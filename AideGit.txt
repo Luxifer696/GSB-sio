@@ -1,0 +1,52 @@
+				COMMANDES IMPORTANTES GIT
+	Tout paramètre entre chevrons perd ses chevrons dans la ligne de commande
+
+On commence par cloner la branche qui nous concerne : 
+	"git clone --single-branch --branch <nom de la branche> https://github.com/Luxifer696/GSB-sio.git
+		La commande copie le dossier GSB-sio dans son intégralité, sa version est celle stockée sur la branche qu'on clone.
+
+
+
+Pour récupérer les modifications faites sur notre branche de travail (par exemple, Théo modifie un truc sur la branche Kalil, puis Kalil veut récupérer ces modifs): 
+	"git pull origin <nom de la branche>
+		Je pense qu'il vaut mieux le faire dans un autre dossier que le dossier de travail si on tire une branche différente. Par exemple, tirer la branche master 
+		dans la branche Théo risque de tout casser (Je pense ..?).
+
+
+
+Si on veut récupérer, par exemple, la branche master en local alors qu'on a déjà la branche Théo : 
+	"git fetch origin <nom de la branche>"
+
+	/!\ ON UTILISE CA QUE SI LA BRANCHE QUE L'ON VEUT N'EXISTE PAS EN LOCAL. SI ON VEUT JUSTE METTRE A JOUR LA BRANCHE, ON UTILISE "GIT PULL" /!\
+
+	En fait, "git pull", c'est "git fecth" + "git merge". Autrement dit, il récupère la branche que l'on demande et il la fusionne avec celle que l'on a déjà
+		
+
+
+Après travail, une fois que l'on souhaite enregistrer les modifs : 
+	"git status"
+		Donne un listing des fichiers modifiés (affichés en jaune) et des fichiers encore jamais enregistré sur le repository Git (affichés en rouge).
+		Cette commande est optionnelle et informative.
+
+	"git add ." (. = tout les fichiers)
+		Ajoute tout les fichiers (nouveaux fichiers et fichiers modifés pendant la session de travail) à la liste de commit. Après ça, un "git status"
+		devrait afficher tout les fichiers modifiés en vert. On peut ajouter un seul fichier à la liste de commit avec "git add <nom du fichier>".
+
+	"git commit -m <description du commit>"
+		Commit tout les fichiers ajoutés grâce à "git add". En d'autres termes, prépare tout les fichiers que l'on souhaite envoyer sur le git à l'être.
+		Le sélecteur " -m" permet d'ajouter une description au commit, c'est pratique pour savoir qui a fait le con :)
+		"git commit -a -m" exécute "git add ." grâce au sélecteur " -a". C'est pratique quand on est sûr de vouloir tout commit.
+
+
+
+Une fois le travail commit : 
+	"git push origin <branche dans laquelle tu es>" 
+
+Si l'on souhaite (et qu'on est sûr de pas foutre la merde) envoyer notre travail sur le master :
+	Aller sur le master avec "git checkout master"
+	Ensuite : "git merge <nom de la branche que l'on veut merge avec le master>"   (pour les nuls de l'anglais merge == fusionner)
+	La commande va repérer les différences qu'il y a entre master et la branche qu'on merge, puis les appliquer à master. ça peut delete, remplacer des fichiers,
+	alors faut faire gaffe.
+	
+		
+		
